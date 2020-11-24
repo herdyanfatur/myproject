@@ -56,6 +56,7 @@ exports.getAllBlogPost = (req, res, next) => {
     const perPage = req.query.perPage || 5;
     let totalItems;
 
+    //pagination
     BlogPost.find()
     .countDocuments()
     .then(count => {

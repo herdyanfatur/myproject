@@ -1,9 +1,13 @@
+require('dotenv').config();
+//console.log(require('dotenv').config().parsed)
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 //file upload handler
 const multer = require('multer');
 const path = require('path');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 
 const app = express();
@@ -68,9 +72,10 @@ app.use((error, req, res, next) => {
     res.status(status).json({ message : message, data: data});
 });
 
-mongoURI = "mongodb+srv://herdyan:GswmWW263Vr93dK@cluster0.09gau.mongodb.net/Blog?retryWrites=true&w=majority"
+// mongoURI = "mongodb+srv://herdyan:GswmWW263Vr93dK@cluster0.09gau.mongodb.net/Blog?retryWrites=true&w=majority"
 
-mongoose.connect(mongoURI,  { useNewUrlParser: true, useUnifiedTopology:true  })
+mongoose.connect(process.env.mongoURI,  { useNewUrlParser: true, useUnifiedTopology:true  })
+
 .then(() => {
     app.listen(4000, () => console.log('Connection success!'));
 })
