@@ -72,7 +72,6 @@ app.use((error, req, res, next) => {
     res.status(status).json({ message : message, data: data});
 });
 
-// mongoURI = "mongodb+srv://herdyan:GswmWW263Vr93dK@cluster0.09gau.mongodb.net/Blog?retryWrites=true&w=majority"
 
 mongoose.connect(process.env.mongoURI,  { useNewUrlParser: true, useUnifiedTopology:true  })
 
